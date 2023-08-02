@@ -1,0 +1,102 @@
+# Options for analysis running.
+run:
+  timeout: 8m
+  skip-files:
+    - logging/zapLogger.go # :D
+  skip-dirs:
+    - cmd/singledevicereport
+    - .*fakes
+    - .*wrapped
+    - ./db/generated/* # auto-generated code by Gorm Gen
+  go: "1.20"
+# output configuration options
+output:
+# All available settings of specific linters.
+linters-settings:
+  revive:
+    rules:
+      # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#argument-limit
+      - name: argument-limit
+        severity: warning
+        disabled: false
+        arguments: [5]
+      # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#function-result-limit
+      - name: function-result-limit
+        severity: warning
+        disabled: false
+        arguments: [3]
+  wrapcheck:
+    ignorePackageGlobs:
+      # ignore this package, as it wraps errors to add logging context
+      - github.com/vbogdanov/logctx
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - containedctx
+    - contextcheck
+    - cyclop
+    - decorder
+    - dogsled
+    - dupl
+    - durationcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - execinquery
+    - exhaustive
+    - exportloopref
+    - forcetypeassert
+    - funlen
+    - gci
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - goerr113
+    - gofmt
+    - goimports
+    - gomnd
+    - goprintffuncname
+    - gosec
+    - grouper
+    - importas
+    - interfacebloat
+    - ireturn
+    - lll
+    - maintidx
+    - misspell
+    - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - noctx
+    - nosprintfhostport
+    - prealloc
+    - predeclared
+    - reassign
+    - revive
+    - stylecheck
+    - tenv
+    - testableexamples
+    - testpackage
+    - unconvert
+    - unparam
+    - usestdlibvars
+    - whitespace
+    - wrapcheck
+issues:
+severity:
